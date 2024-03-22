@@ -22,6 +22,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -41,6 +75,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -140,7 +176,21 @@ ul.task-list li input[type="checkbox"] {
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#setting-up" id="toc-setting-up" class="nav-link active" data-scroll-target="#setting-up"><span class="header-section-number">1</span> Setting up</a>
+  <ul class="collapse">
+  <li><a href="#getting-started-with-vs-code" id="toc-getting-started-with-vs-code" class="nav-link" data-scroll-target="#getting-started-with-vs-code"><span class="header-section-number">1.1</span> Getting started with VS Code</a></li>
+  <li><a href="#script-setup" id="toc-script-setup" class="nav-link" data-scroll-target="#script-setup"><span class="header-section-number">1.2</span> Script setup</a></li>
+  <li><a href="#activate-the-conda-environment" id="toc-activate-the-conda-environment" class="nav-link" data-scroll-target="#activate-the-conda-environment"><span class="header-section-number">1.3</span> Activate the Conda environment</a></li>
+  </ul></li>
+  <li><a href="#download-the-nf-core-rnaseq-workflow" id="toc-download-the-nf-core-rnaseq-workflow" class="nav-link" data-scroll-target="#download-the-nf-core-rnaseq-workflow"><span class="header-section-number">2</span> Download the nf-core rnaseq workflow</a></li>
+  <li><a href="#write-a-script-to-run-the-workflow" id="toc-write-a-script-to-run-the-workflow" class="nav-link" data-scroll-target="#write-a-script-to-run-the-workflow"><span class="header-section-number">3</span> Write a script to run the workflow</a></li>
+  <li><a href="#run-the-workflow" id="toc-run-the-workflow" class="nav-link" data-scroll-target="#run-the-workflow"><span class="header-section-number">4</span> Run the workflow</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -176,8 +226,305 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+This page is still under construction
+</div>
+</div>
+<div class="callout-body-container callout-body">
+
+</div>
+</div>
+<hr>
+<p><br></p>
+<section id="setting-up" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="setting-up"><span class="header-section-number">1</span> Setting up</h2>
+<section id="getting-started-with-vs-code" class="level3" data-number="1.1">
+<h3 data-number="1.1" class="anchored" data-anchor-id="getting-started-with-vs-code"><span class="header-section-number">1.1</span> Getting started with VS Code</h3>
+<p>We will use the VS Code text editor to write a script to run the nf-core rnaseq worklow. To emphasize the additional functionality relative to basic text editors like Notepad and TextEdit, editors like VS Code are also referred to as “<strong>IDEs</strong>”: <em>Integrated Development Environments</em>. The RStudio program is another good example of an IDE. Just like RStudio is an IDE for R, VS Code will be our IDE for shell code today.</p>
+<section id="starting-vs-code-at-osc" class="level4">
+<h4 class="anchored" data-anchor-id="starting-vs-code-at-osc">Starting VS Code at OSC</h4>
+<ul>
+<li><p>Log in to OSC’s OnDemand portal at <a href="https://ondemand.osc.edu" class="uri">https://ondemand.osc.edu</a>.</p></li>
+<li><p>In the blue top bar, select <code>Interactive Apps</code> and near the bottom, click <code>Code Server</code>.</p></li>
+<li><p>VS Code runs on a compute node so we have to fill out a form to make a reservation for one:</p>
+<ul>
+<li>The OSC “<em>Project</em>” that we want to bill for the compute node usage: <code>PAS2658</code>.</li>
+<li>The “<em>Number of hours</em>” we want to make a reservation for: <code>2</code>.</li>
+<li>The “<em>Working Directory</em>” for the program: your personal folder in <code>/fs/scratch/PAS2658</code> (e.g.&nbsp;<code>/fs/scratch/PAS2658/jelmer</code>).</li>
+<li>The “<em>Codeserver Version</em>”: <code>4.8</code> (most recent).</li>
+</ul></li>
+<li><p>Click <code>Launch</code>.</p></li>
+<li><p>First, your job will be “<em>Queued</em>” — that is, waiting for the job scheduler to allocate compute node resources to it.</p></li>
+<li><p>Your job is typically granted resources within a few seconds (the card will then say “<em>Starting</em>”), and should be ready for usage (“<em>Running</em>”) in another couple of seconds.</p></li>
+<li><p>Once it appears, click on the blue <strong>Connect to VS Code</strong> button to open VS Code in a new browser tab.</p></li>
+<li><p>When VS Code opens, you may get these two pop-ups (and possibly some others) — click “Yes” (and check the box) and “Don’t Show Again”, respectively:</p></li>
+</ul>
+<div class="columns">
+<div class="column" style="width:52%;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img_lab1/vscode-trust2.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%"></p>
+</figure>
+</div>
+</div><div class="column" style="width:48%;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img_lab1/vscode-git.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<ul>
+<li>You’ll also get a Welcome/Get Started page — you don’t have to go through steps that may be suggested there.</li>
+</ul>
+<p><br></p>
+</section>
+<section id="the-vs-code-user-interface" class="level4">
+<h4 class="anchored" data-anchor-id="the-vs-code-user-interface">The VS Code User Interface</h4>
+<details>
+<summary>
+<em>Click to see a screenshot</em>
+</summary>
+<img src="img_lab1/vscode-welcome_ed.png" class="img-fluid quarto-figure quarto-figure-center" style="width:80.0%">
+</details>
+<section id="side-bars" class="level5">
+<h5 class="anchored" data-anchor-id="side-bars">Side bars</h5>
+<p>The <strong>Activity Bar</strong> (narrow side bar) on the far left has:</p>
+<ul>
+<li>A <i class="fa-solid fa-bars" aria-label="bars"></i> (“hamburger menu”), which has menu items like <code>File</code> that you often find in a top bar.</li>
+<li>A <i class="fa-solid fa-cog" aria-label="cog"></i> (cog wheel icon) in the bottom, through which you can mainly access <em>settings</em>.</li>
+<li>Icons to toggle between <strong>(wide/Primary) Side Bar</strong> options, like a File Explorer (the default option), Search, and Version Control.</li>
+</ul>
+</section>
+<section id="terminal" class="level5">
+<h5 class="anchored" data-anchor-id="terminal">Terminal</h5>
+<p>Open a terminal with a Unix shell by clicking <i class="fa-solid fa-bars" aria-label="bars"></i> &nbsp; =&gt; <code>Terminal</code> =&gt; <code>New Terminal</code>. In the terminal, create a directory for this lab, e.g.:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># You should be in your personal dir in /fs/scratch/PAS2658</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="bu">pwd</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="bash-out"><code>/fs/scratch/PAS2658/jelmer</code></pre>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> Lab9 </span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> Lab9</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> scripts run software</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="editor-pane-and-welcome-document" class="level5">
+<h5 class="anchored" data-anchor-id="editor-pane-and-welcome-document">Editor pane and <code>Welcome</code> document</h5>
+<p>The main part of the VS Code is the editor pane. Here, we can open files like scripts and other types of text files, and images. Let’s create and save a new file:</p>
+<ol type="1">
+<li><strong>Open a new file:</strong> Click the hamburger menu <i class="fa fa-bars"></i>, then <code>File</code> &gt; <code>New File</code>.</li>
+<li><strong>Save the file</strong> (<kbd>Ctrl/⌘</kbd>+<kbd>S</kbd>), inside one of the dirs you just created: <code>Lab9/scripts/run.sh</code>.</li>
+</ol>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+A folder as a starting point <em>(Click to expand)</em>
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Conveniently, VS Code takes a specific directory as a <strong>starting point in all parts of the program</strong>:</p>
+<ul>
+<li>In the file explorer in the side bar</li>
+<li>In the terminal</li>
+<li>When saving files in the editor pane.</li>
+</ul>
+<p>This is why your terminal was “already” located in <code>/fs/scratch/PAS2658/&lt;your-name&gt;</code>.</p>
+<p>If you need to switch folders, click &nbsp; <i class="fa-solid fa-bars" aria-label="bars"></i> &nbsp; &gt; &nbsp; <code>File</code> &nbsp; &gt; &nbsp; <code>Open Folder</code>.</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+How to hide the side bars <em>(Click to expand)</em>
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>If you want to save some screen space while coding along in class, you may want to occasionally hide the side bars:</p>
+<ul>
+<li>In <i class="fa-solid fa-bars" aria-label="bars"></i> &gt; <code>View</code> &gt; <code>Appearance</code> you can toggle both the <code>Activity Bar</code> and the <code>Primary Side Bar</code>.</li>
+<li>Or use keyboard shortcuts:
+<ul>
+<li><kbd>Ctrl/⌘</kbd>+<kbd>B</kbd> for the primary/wide side bar</li>
+<li><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>B</kbd> for the activity/narrow side bar</li>
+</ul></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Some VS Code tips and tricks <em>(Click to expand)</em>
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ul>
+<li><p><strong>Resizing panes</strong><br>
+You can resize panes (terminal, editor, side bar) by hovering your cursor over the borders and then dragging.</p></li>
+<li><p><strong>The Command Palette</strong><br>
+To access all the menu options that are available in VS Code, the so-called “Command Palette” can be handy, especially if you know what you are looking for. To access the Command Palette, click &nbsp; <i class="fa fa-cog"></i> &nbsp; and then <code>Command Palette</code> (or press <kbd>F1</kbd> or <kbd>Ctrl</kbd>/<kbd>⌘</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd>). To use it, start typing something to look for an option.</p></li>
+<li><p><strong>Keyboard shortcuts</strong><br>
+For a single-page PDF overview of keyboard shortcuts for your operating system: <i class="fa-solid fa-bars" aria-label="bars"></i> &nbsp; =&gt; &nbsp; <code>Help</code> &nbsp; =&gt; &nbsp; <code>Keyboard Shortcut Reference</code>. (Or for direct links to these PDFs: <a href="https://code.visualstudio.com/shortcuts/keyboard-shortcuts-windows.pdf">Windows</a> / <a href="https://code.visualstudio.com/shortcuts/keyboard-shortcuts-macos.pdf">Mac</a> / <a href="https://code.visualstudio.com/shortcuts/keyboard-shortcuts-linux.pdf">Linux</a>.) A couple of useful keyboard shortcuts are highlighted below.</p></li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<section id="exercise-install-the-shellcheck-extension" class="level5 exercise">
+<h5 class="anchored" data-anchor-id="exercise-install-the-shellcheck-extension"><i class="fa-solid fa-user-edit" aria-label="user-edit"></i> Exercise: Install the Shellcheck extension</h5>
+<p>Click the gear icon <i class="fa fa-cog"></i> and then <code>Extensions</code>, and search for and then install the <strong>shellcheck</strong> (by <em>simonwong</em>) extension, which will check your shell scripts for errors and is extremely useful.</p>
+</section>
+<hr style="height:1pt; visibility:hidden;">
+</section>
+</section>
+<section id="script-setup" class="level3" data-number="1.2">
+<h3 data-number="1.2" class="anchored" data-anchor-id="script-setup"><span class="header-section-number">1.2</span> Script setup</h3>
+<p>We will be working with two scripts in this lab:</p>
+<ul>
+<li><p>A “runner” script that you can also think of as a digital lab notebook, containing commands that we run interactively. This is the <code>run/run.sh</code> script you already created.</p></li>
+<li><p>A script that we will submit as a Slurm batch job with <code>sbatch</code>, containing code to run the nf-core nextflow workflow. We will save that as <code>scripts/nfc-rnaseq.sh</code>:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create an empty file - this will be our batch job script </span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">touch</span> scripts/nfc-rnaseq.sh</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+</ul>
+<hr style="height:1pt; visibility:hidden;">
+</section>
+<section id="activate-the-conda-environment" class="level3" data-number="1.3">
+<h3 data-number="1.3" class="anchored" data-anchor-id="activate-the-conda-environment"><span class="header-section-number">1.3</span> Activate the Conda environment</h3>
+<p>To save some time, you won’t do your own Conda installation of <a href="https://anaconda.org/bioconda/nextflow">Nextflow</a> or <a href="https://anaconda.org/bioconda/nf-core">nf-core tools</a> — I’ve installed both of these in an environment that you can activate as follows:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># First load OSC's (mini)Conda module</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="ex">module</span> load miniconda3</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Then activate the Nextflow conda environment </span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> activate /fs/ess/PAS0471/jelmer/conda/nextflow</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Check the versions:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">nextflow</span> <span class="at">-v</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="bash-out"><code>nextflow version 23.10.1.5891</code></pre>
+<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">nf-core</span> <span class="at">--version</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="bash-out"><code>                                          ,--./,-.
+          ___     __   __   __   ___     /,-._.--~\
+    |\ | |__  __ /  ` /  \ |__) |__         }  {
+    | \| |       \__, \__/ |  \ |___     \`-._,-`-,
+                                          `._,._,'
+
+    nf-core/tools version 2.13.1 - https://nf-co.re
+
+nf-core, version 2.13.1</code></pre>
+<p><br></p>
+</section>
+</section>
+<section id="download-the-nf-core-rnaseq-workflow" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="download-the-nf-core-rnaseq-workflow"><span class="header-section-number">2</span> Download the nf-core rnaseq workflow</h2>
+<p>We will first set the environment variable <code>NXF_SINGULARITY_CACHEDIR</code> to tell Nextflow where to store the Singularity containers for all the tools that the workflow runs. More commonly, these kinds of settings are specified with options (think, e.g., <code>--cachedir</code>) when you run commands, but somewhat oddly, this is the only way we can specify that here.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">NXF_SINGULARITY_CACHEDIR</span><span class="op">=</span>/fs/ess/PAS0471/containers</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Next, we’ll run the <code>nf-core download</code> command to download the currently latest version (<code>3.14.0</code>) of the rnaseq workflow to <code>software/rnaseq</code>, and the associated container files to the previously specified dir:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ex">nf-core</span> download rnaseq <span class="dt">\</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">--revision</span> 3.14.0 <span class="dt">\</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">--outdir</span> software/nfc-rnaseq <span class="dt">\</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">--compress</span> none <span class="dt">\</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">--container-system</span> singularity <span class="dt">\</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">--container-cache-utilisation</span> amend <span class="dt">\</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">--download-configuration</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img_lab1/nfcore_download_output.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Explanation of all options given to <code>nf-core download</code> <em>(Click to expand)</em>
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ul>
+<li><code>--revision</code>: The version of the rnaseq workflow</li>
+<li><code>--outdir</code>: The dir to save the workflow definition files</li>
+<li><code>--compress</code>: Whether to compress the workflow files — we chose not to</li>
+<li><code>--container-system</code>: The type of containers to download. This should always be <code>singularity</code> at OSC, because that’s the only supported type.</li>
+<li><code>--container-cache-utilisation</code>: This is a little technical and not terribly interesting, but with <code>amend</code>, as we ran it, the process will check this dir for existing containers and simply download any that aren’t already found there.</li>
+<li><code>--download-configuration</code>: This will download some configuration files that we will actually not use, but if you don’t provide this option it will ask you about it when you run the command.</li>
+</ul>
+</div>
+</div>
+</div>
+<p><br></p>
+</section>
+<section id="write-a-script-to-run-the-workflow" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="write-a-script-to-run-the-workflow"><span class="header-section-number">3</span> Write a script to run the workflow</h2>
+<section id="prepare-the-samplesheet" class="level4">
+<h4 class="anchored" data-anchor-id="prepare-the-samplesheet">Prepare the samplesheet</h4>
+</section>
+<section id="download-the-osc-configuration-file" class="level4">
+<h4 class="anchored" data-anchor-id="download-the-osc-configuration-file">Download the OSC configuration file</h4>
+</section>
+<section id="the-sbatch-options" class="level4">
+<h4 class="anchored" data-anchor-id="the-sbatch-options">The <code>#SBATCH</code> options</h4>
+<div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH --account=PAS2658</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH --cpus-per-task=1</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH --time=12:00:00</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH --mail-type=</span><span class="re">END</span><span class="co">,FAIL</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH --output=slurm-nfc_rnaseq-%j.out</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="the-final-command" class="level4">
+<h4 class="anchored" data-anchor-id="the-final-command">The final command</h4>
+<div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="ex">nextflow</span> run software/nfcore-rnaseq/3_14_0 <span class="dt">\</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">--input</span> <span class="st">"</span><span class="va">$samplesheet</span><span class="st">"</span> <span class="dt">\</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">--fasta</span> <span class="st">"</span><span class="va">$fasta</span><span class="st">"</span> <span class="dt">\</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">--gtf</span> <span class="st">"</span><span class="va">$gtf</span><span class="st">"</span> <span class="dt">\</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">--outdir</span> <span class="st">"</span><span class="va">$outdir</span><span class="st">"</span> <span class="dt">\</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">--remove_ribo_rna</span> <span class="dt">\</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">--extra_salmon_quant_args</span> <span class="st">"'--gcBias'"</span> <span class="dt">\</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">-resume</span> <span class="dt">\</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">-profile</span> singularity <span class="dt">\</span></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">-ansi-log</span> false <span class="dt">\</span></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">-work-dir</span> /fs/scratch/PAS2658/Lab9/nfc-rnaseq/<span class="st">"</span><span class="va">$USER</span><span class="st">"</span> <span class="dt">\</span></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">-c</span> config/osc.config</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="the-final-script" class="level4">
+<h4 class="anchored" data-anchor-id="the-final-script">The final script</h4>
+<p><br></p>
+</section>
+</section>
+<section id="run-the-workflow" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="run-the-workflow"><span class="header-section-number">4</span> Run the workflow</h2>
+<p>We will now switch back to the <code>run/run.sh</code> script to add the code to actually run the workflow.</p>
+<section id="the-reference-genome-files" class="level4">
+<h4 class="anchored" data-anchor-id="the-reference-genome-files">The reference genome files</h4>
+<div class="sourceCode" id="cb14"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="va">ref_fna</span><span class="op">=</span>data/ref/GCF_016801865.2.fna</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="va">ref_gtf</span><span class="op">=</span>data/ref/GCF_016801865.2.gtf</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="ex">sbatch</span> scripts/nfc_rnaseq.sh <span class="dt">\</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    metadata/nfc_samplesheet.csv <span class="dt">\</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"</span><span class="va">$ref_fna</span><span class="st">"</span> <span class="dt">\</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"</span><span class="va">$ref_gtf</span><span class="st">"</span> <span class="dt">\</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>    results/nfc_rnaseq</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><br></p>
 
 
+</section>
+</section>
 
 <a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
