@@ -9,7 +9,7 @@
 <meta name="author" content="Jelmer Poelstra">
 <meta name="dcterms.date" content="2024-03-27">
 
-<title>HCS7004-SP24 - March 27 - Lab part II: differential expression analysis</title>
+<title>HCS7004-SP24 - March 27 - Self-study lab: Gene count table analysis</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -131,18 +131,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </i> 
 <span class="menu-text"> </span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./lecture.html"> 
-<span class="menu-text">Lecture</span></a>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-materials" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Materials</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-materials">    
+        <li>
+    <a class="dropdown-item" href="./lecture.html">
+ <span class="dropdown-text"><strong>Lecture</strong>: Pipelines, nf-core, and the rnaseq pipeline</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./lab1.html"> 
-<span class="menu-text">Lab part I: nf-core</span></a>
+        <li>
+    <a class="dropdown-item" href="./lab1.html">
+ <span class="dropdown-text"><strong>Lab</strong>: Running the nf-core rnaseq pipeline</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link active" href="./lab2.html" aria-current="page"> 
-<span class="menu-text">Lab part II: DE</span></a>
+        <li>
+    <a class="dropdown-item" href="./lab2.html">
+ <span class="dropdown-text"><strong>Self-study</strong>: Gene count table analysis</span></a>
   </li>  
+    </ul>
+  </li>
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
@@ -230,7 +237,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Lab part II: differential expression analysis</h1>
+<h1 class="title">Self-study lab: Gene count table analysis</h1>
+<p class="subtitle lead">Exploratory and differential expression analysis</p>
 </div>
 
 
@@ -259,19 +267,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<div class="callout callout-style-default callout-important callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-This page is still under construction
-</div>
-</div>
-<div class="callout-body-container callout-body">
-
-</div>
-</div>
 <hr>
 <p><br></p>
 <p>After running steps like read preprocessing, alignment, and quantification using the nf-core rnaseq workflow, or another method, you will have a <strong>gene count table</strong>. Today, with that gene count table, you will:</p>
@@ -313,7 +308,7 @@ This page is still under construction
 </ol>
 <hr style="height:1pt; visibility:hidden;">
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -322,7 +317,7 @@ Optional: change two settings
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>First, prevent R from saving your <strong>“Workspace”</strong>:</p>
 <ol type="1">
@@ -354,7 +349,7 @@ Optional: change two settings
 </section>
 <section id="create-a-new-rstudio-project" class="level3" data-number="1.2">
 <h3 data-number="1.2" class="anchored" data-anchor-id="create-a-new-rstudio-project"><span class="header-section-number">1.2</span> Create a new RStudio Project</h3>
-<p>Using an “RStudio Project” will most of all help to make sure your working directory in R is correct. To create a new RStudio Project inside your personal dir in <code>/fs/scratch/PAS2658/&lt;your-name&gt;/Lab6</code>:</p>
+<p>Using an “RStudio Project” will most of all help to make sure your working directory in R is correct. To create a new RStudio Project inside your personal dir in <code>/fs/scratch/PAS2658/&lt;your-name&gt;/Lab9</code>:</p>
 <ol type="1">
 <li>Click <strong><code>File</code></strong> (top bar, below your browser’s address bar) &gt; <strong><code>New Project</code></strong></li>
 <li>In the popup window, click <strong><code>Existing Directory</code></strong>.</li>
@@ -400,7 +395,7 @@ Optional: change two settings
 </figure>
 </div>
 <ol start="6" type="1">
-<li>Now you should be able to browse/click the rest of the way to your personal directory.</li>
+<li>Now you should be able to browse/click the rest of the way to your <code>Lab9</code> dir.</li>
 <li>Click <strong><code>Choose</code></strong> to pick your selected directory.</li>
 <li>Click <strong><code>Create Project</code></strong>.</li>
 </ol>
@@ -409,7 +404,7 @@ Optional: change two settings
 <section id="create-an-r-script" class="level3" data-number="1.3">
 <h3 data-number="1.3" class="anchored" data-anchor-id="create-an-r-script"><span class="header-section-number">1.3</span> Create an R script</h3>
 <p>We’re going to write all our code in an R script instead of typing it in the console. This helps us to keep track of what we’ve been doing, and enables us to re-run our code after modifying input data or one of the lines of code.</p>
-<p>Create and open a new R script by clicking <strong><code>File</code></strong> (top menu bar) &gt; <strong><code>New File</code></strong> &gt; <strong><code>R Script</code></strong>. Save this new script right away by clicking <strong><code>File</code></strong> &gt; <strong><code>Save As</code></strong>, and save it with a name like <strong><code>DE.R</code></strong> (inside the <code>Lab6</code> dir which should be automatically selected).</p>
+<p>Create and open a new R script by clicking <strong><code>File</code></strong> (top menu bar) &gt; <strong><code>New File</code></strong> &gt; <strong><code>R Script</code></strong>. Save this new script right away by clicking <strong><code>File</code></strong> &gt; <strong><code>Save As</code></strong>, and save it with a name like <strong><code>scripts/DE.R</code></strong> (inside the <code>Lab9</code> dir which should be automatically selected).</p>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -641,13 +636,14 @@ Attaching package: 'Biobase'</code></pre>
 <p>For the differential expression analysis, we have the following input files:</p>
 <ul>
 <li><strong>Metadata table</strong> — Metadata for the study, linking sample IDs to treatments</li>
-<li><strong>Gene count table</strong> — Produced by <a href="https://nf-co.re/rnaseq">nf-core rnaseq workflow</a></li>
+<li><strong>Gene count table</strong> — Produced by the <a href="https://nf-co.re/rnaseq">nf-core rnaseq workflow</a></li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co"># We'll save the paths to our input files for later use</span></span>
-<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="co"># ('..' goes up one dir in the dir hierarchy - same as in the Unix shell) </span></span>
-<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>count_table_file <span class="ot">&lt;-</span> <span class="st">"../share/results/counts/salmon.merged.gene_counts_length_scaled.tsv"</span></span>
-<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>metadata_file <span class="ot">&lt;-</span> <span class="st">"../share/data/meta/metadata.tsv"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">NOTE</span><span class="co">: here I am providing the path to my gene count table,</span></span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="co">#       but if you ran the workflow to completion, you can use your own.</span></span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a><span class="co"># We'll save the paths to our input files for later use</span></span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>count_table_file <span class="ot">&lt;-</span> <span class="st">"/fs/scratch/PAS2658/jelmer/share/results/salmon.merged.gene_counts_length_scaled.tsv"</span></span>
+<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a>metadata_file <span class="ot">&lt;-</span> <span class="st">"data/meta/metadata.tsv"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><br></p>
 </section>
@@ -722,7 +718,7 @@ ERR10802868 24hpi    relictum</code></pre>
 </div>
 </div>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -731,7 +727,7 @@ Factors are a common R data type for categorical variables <em>(Click to expand)
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>We changed the two independent variable columns (<code>time</code> and <code>treatment</code>) into factors, because DESEq2 wants this — this also allowed us to use a custom, non-alphanumeric ordering where <code>24hpi</code> comes before <code>10dpi</code>:</p>
 <div class="cell">
@@ -978,13 +974,11 @@ The authors of the study did this as well:
 <div class="cell">
 <div class="sourceCode cell-code" id="cb73"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a><span class="co"># With 'intgroup' we specify the variables (columns) to color samples by</span></span>
 <span id="cb73-2"><a href="#cb73-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plotPCA</span>(dds_vst, <span class="at">intgroup =</span> <span class="fu">c</span>(<span class="st">"time"</span>, <span class="st">"treatment"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div>
+</div>
+<div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="lab2_files/figure-html/unnamed-chunk-26-1.png" class="img-fluid figure-img" style="width:85.0%"></p>
+<p><img src="img_lab2/PCA.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%"></p>
 </figure>
-</div>
-</div>
 </div>
 <hr style="height:1pt; visibility:hidden;">
 <section id="exercise-pca" class="level4 exercise">

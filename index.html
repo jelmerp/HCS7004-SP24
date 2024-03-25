@@ -93,18 +93,25 @@ ul.task-list li input[type="checkbox"] {
 </i> 
 <span class="menu-text"> </span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./lecture.html"> 
-<span class="menu-text">Lecture</span></a>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-materials" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Materials</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-materials">    
+        <li>
+    <a class="dropdown-item" href="./lecture.html">
+ <span class="dropdown-text"><strong>Lecture</strong>: Pipelines, nf-core, and the rnaseq pipeline</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./lab1.html"> 
-<span class="menu-text">Lab part I: nf-core</span></a>
+        <li>
+    <a class="dropdown-item" href="./lab1.html">
+ <span class="dropdown-text"><strong>Lab</strong>: Running the nf-core rnaseq pipeline</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./lab2.html"> 
-<span class="menu-text">Lab part II: DE</span></a>
+        <li>
+    <a class="dropdown-item" href="./lab2.html">
+ <span class="dropdown-text"><strong>Self-study</strong>: Gene count table analysis</span></a>
   </li>  
+    </ul>
+  </li>
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
@@ -161,26 +168,24 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<hr>
 <p><br></p>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Schedule for today
-</div>
-</div>
-<div class="callout-body-container callout-body">
+<section id="schedule-for-today" class="level3">
+<h3 class="anchored" data-anchor-id="schedule-for-today">Schedule for today</h3>
 <ul>
-<li><p>1:50-2:45 pm — <a href="./lecture.html"><strong>Lecture (slides)</strong></a></p></li>
-<li><p>3:00-3:55 pm — <a href="./lab1.html"><strong>Lab part I: Running nf-core’s rnaseq workflow</strong></a></p></li>
-<li><p>4:00-4:50 pm — <a href="lab2/qmd"><strong>Lab part II: Differential expression analysis</strong></a></p></li>
+<li><p>1:50-2:45 pm — <a href="./lecture.html"><strong>Lecture: Pipelines, nf-core, and the rnaseq pipeline (slides)</strong></a></p></li>
+<li><p>3:00-4:50 pm — <a href="./lab1.html"><strong>Lab: Running the nf-core rnaseq pipeline</strong></a></p></li>
 </ul>
-</div>
-</div>
+<p><br></p>
+</section>
+<section id="self-study-lab" class="level3">
+<h3 class="anchored" data-anchor-id="self-study-lab">Self-study lab</h3>
+<ul>
+<li><a href="./lab2.html"><strong>Analyzing the gene count table – Exploratory and differential expression analysis</strong></a></li>
+</ul>
 
 
+</section>
 
 <a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
