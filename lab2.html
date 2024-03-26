@@ -146,7 +146,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>  
         <li>
     <a class="dropdown-item" href="./lab2.html">
- <span class="dropdown-text"><strong>Self-study</strong>: Gene count table analysis</span></a>
+ <span class="dropdown-text"><strong>Self-study lab</strong>: Gene count table analysis</span></a>
   </li>  
     </ul>
   </li>
@@ -1174,10 +1174,11 @@ cathemerium_10dpi cathemerium_24hpi     control_10dpi     control_24hpi
 <li>The second level of the independent variable (in the example below, <code>control_24hpi</code>)</li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb91"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb91-1"><a href="#cb91-1" aria-hidden="true" tabindex="-1"></a>focal_contrast <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"group"</span>, <span class="st">"relictum_24hpi"</span>, <span class="st">"control_24hpi"</span>)</span>
-<span id="cb91-2"><a href="#cb91-2" aria-hidden="true" tabindex="-1"></a>res_rc24 <span class="ot">&lt;-</span> <span class="fu">results</span>(dds, <span class="at">contrast =</span> focal_contrast)</span>
-<span id="cb91-3"><a href="#cb91-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb91-4"><a href="#cb91-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(res_rc24)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb91"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb91-1"><a href="#cb91-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract the DE results for one pairwise comparison</span></span>
+<span id="cb91-2"><a href="#cb91-2" aria-hidden="true" tabindex="-1"></a>focal_contrast <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"group"</span>, <span class="st">"relictum_24hpi"</span>, <span class="st">"control_24hpi"</span>)</span>
+<span id="cb91-3"><a href="#cb91-3" aria-hidden="true" tabindex="-1"></a>res_rc24 <span class="ot">&lt;-</span> <span class="fu">results</span>(dds, <span class="at">contrast =</span> focal_contrast)</span>
+<span id="cb91-4"><a href="#cb91-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb91-5"><a href="#cb91-5" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(res_rc24)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre class="styled-output"><code>log2 fold change (MLE): group relictum_24hpi vs control_24hpi 
 Wald test p-value: group relictum_24hpi vs control_24hpi 
