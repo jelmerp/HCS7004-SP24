@@ -130,7 +130,7 @@
     "href": "lecture.html#two-main-parts-to-rna-seq-data-analysis",
     "title": "Pipelines, nf-core,and nf-core rnaseq—-",
     "section": "Two main parts to RNA-seq data analysis",
-    "text": "Two main parts to RNA-seq data analysis\nThere are two main parts to the kind of RNA-seq data analysis I just described:\n\n\nFrom reads to counts\n\n\nGenerating a count table using the reads & the reference genome.\nThis what nf-core rnaseq does, which we will run in today’s lab.\n\n\n\n\nCount table analysis\n\n\nExploratory data & differential expression analysis is covered in the self-study lab.\nFunctional enrichment (GO, KEGG) analysis is typically also performed."
+    "text": "Two main parts to RNA-seq data analysis\nThere are two main parts to the kind of RNA-seq data analysis I just described:\n\n\nFrom reads to counts\n\n\nGenerating a count table using the reads & the reference genome.\nThis what nf-core rnaseq does, which we will run in today’s lab.\n\n\n\n\n\nCount table analysis\n\n\nExploratory data & differential expression analysis is covered in the self-study lab.\nFunctional enrichment (GO, KEGG) analysis is typically also performed."
   },
   {
     "objectID": "lecture.html#overview-of-the-pipeline-again",
@@ -144,7 +144,7 @@
     "href": "lecture.html#the-main-steps",
     "title": "Pipelines, nf-core,and nf-core rnaseq—-",
     "section": "The main steps",
-    "text": "The main steps\nRead QC and pre-processing\n\nRead QC (FastQC)\nAdapter and quality trimming (TrimGalore)\nOptional removal of rRNA (SortMeRNA) — off by default, but we will include this\n\nAlignment & quantification\n\nAlignment to the reference genome/transcriptome (STAR)\nGene expression quantification (Salmon)\n\nPost-processing, QC, and reporting\n\nPost-processing alignments: sort, index, mark duplicates (samtools, Picard)\nAlignment/count QC (RSeQC, Qualimap, dupRadar, Preseq, DESeq2)\nCreate a QC/metrics report (MultiQC)"
+    "text": "The main steps\nRead QC and pre-processing\n\nRead QC (FastQC)\nAdapter and quality trimming (TrimGalore)\nOptional removal of rRNA (SortMeRNA) — off by default, but we will include this\n\n\nAlignment & quantification\n\nAlignment to the reference genome/transcriptome (STAR)\nGene expression quantification (Salmon)\n\n\n\nPost-processing, QC, and reporting\n\nPost-processing alignments: sort, index, mark duplicates (samtools, Picard)\nAlignment/count QC (RSeQC, Qualimap, dupRadar, Preseq, DESeq2)\nCreate a QC/metrics report (MultiQC)"
   },
   {
     "objectID": "lecture.html#pipeline-variants",
