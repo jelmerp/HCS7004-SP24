@@ -269,7 +269,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <hr>
 <p><br></p>
-<p>After running steps like read preprocessing, alignment, and quantification using the nf-core rnaseq workflow, or another method, you will have a <strong>gene count table</strong>. Today, with that gene count table, you will:</p>
+<p>After running steps like read pre-processing, alignment, and quantification using the nf-core rnaseq workflow, or another method, you will have a <strong>gene count table</strong>. Today, with that gene count table, you will:</p>
 <ul>
 <li>Create an R object that also incorporates the metadata</li>
 <li>Perform exploratory data analysis including a PCA</li>
@@ -423,7 +423,7 @@ Make sure to type all the R code below inside your script, and then send it to t
 </section>
 <section id="load-the-necessary-packages" class="level3" data-number="1.4">
 <h3 data-number="1.4" class="anchored" data-anchor-id="load-the-necessary-packages"><span class="header-section-number">1.4</span> Load the necessary packages</h3>
-<p>In R, we need to install and then use “packages” (basically, add-ons) to perform specialized tasks like differential expression analysis<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>. Installing packages is quite straightforward in principle, but in RStudio Server at OSC, there can be some hickups.</p>
+<p>In R, we need to install and then use “packages” (basically, add-ons) to perform specialized tasks like differential expression analysis<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>. Installing packages is quite straightforward in principle, but in RStudio Server at OSC, there can be some hiccups.</p>
 <p>I have therefore created a “<strong>library</strong>” (a directory with a collection of packages) for you — you can load the packages from that library, without needing to install them yourself. Copy the code below into your R script and then send it to the R console:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># First, we define the dir that has the custom library:</span></span>
@@ -664,7 +664,7 @@ A statistical design formula (basically, which groups to compare) will tell DESE
 <hr style="height:1pt; visibility:hidden;">
 <section id="metadata" class="level3" data-number="2.1">
 <h3 data-number="2.1" class="anchored" data-anchor-id="metadata"><span class="header-section-number">2.1</span> Metadata</h3>
-<p>First, we’ll load the metadata file and take a look at the resulting dataframe:</p>
+<p>First, we’ll load the metadata file and take a look at the resulting data frame:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Read in the count table</span></span>
 <span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>meta_raw <span class="ot">&lt;-</span> <span class="fu">read_tsv</span>(metadata_file, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1436,7 +1436,7 @@ Log2-fold changes (LFCs)
 </div>
 </details>
 <ul>
-<li><strong>Figure out the identity of the abovementioned log2-fold change outlier.</strong><br>
+<li><strong>Figure out the identity of the above-mentioned log2-fold change outlier.</strong><br>
 <em>(You can do so either by labeling it in the plot, or by filtering the <code>res_rc24</code> table.)</em></li>
 </ul>
 <details>
@@ -1532,7 +1532,7 @@ ERR10802868   32.14394 24hpi    relictum</code></pre>
 <span id="cb123-3"><a href="#cb123-3" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> treatment, <span class="at">y =</span> count, <span class="at">fill =</span> treatment)) <span class="sc">+</span></span>
 <span id="cb123-4"><a href="#cb123-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Plot separate "facets" with the different time points</span></span>
 <span id="cb123-5"><a href="#cb123-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="fu">vars</span>(time)) <span class="sc">+</span></span>
-<span id="cb123-6"><a href="#cb123-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Add a boxplot with a partly transparaent (alpha) color:</span></span>
+<span id="cb123-6"><a href="#cb123-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Add a boxplot with a partly transparent (alpha) color:</span></span>
 <span id="cb123-7"><a href="#cb123-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">alpha =</span> <span class="fl">0.5</span>, <span class="at">outlier.shape =</span> <span class="cn">NA</span>) <span class="sc">+</span></span>
 <span id="cb123-8"><a href="#cb123-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># _And_ add individual points:</span></span>
 <span id="cb123-9"><a href="#cb123-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">4</span>, <span class="at">shape =</span> <span class="dv">21</span>,</span>
